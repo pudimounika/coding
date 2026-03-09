@@ -129,3 +129,5 @@ public class Main {
         }
     }
 }
+Time Complexity - O(N²)
+Space Complexity - O(N)
