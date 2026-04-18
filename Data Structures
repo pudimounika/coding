@@ -166,4 +166,18 @@ public class Main {
 Time complexity O( 2^n)
 Space Complexity O(n)
 
+print all fiboocci numbers till n 
+import java.util.*;
+public class Main {
+  public static void fibonacci(int n,int a, int b){
+   if(n == 0) return;
+   System.out.println(a + " ");
+   fibonacci(n-1,b,a+b);
+  }
+  public static void main(String args[]){
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    fibonacci(n,0,1);
+  }
+}
 
