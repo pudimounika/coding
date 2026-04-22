@@ -286,5 +286,156 @@ Extract digits
 Mark them in an array
 If digit repeats → not unique
 
+public int countNumbersWithUniqueDigits(int n) {
+    int limit = (int)Math.pow(10, n);
+    int count = 0;
+
+    for (int i = 0; i < limit; i++) {
+        if (isUnique(i)) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+public boolean isUnique(int num) {
+    int[] freq = new int[10]; // digits 0–9
+
+    while (num > 0) {
+        int digit = num % 10;
+
+        if (freq[digit] == 1) {
+            return false; // already seen
+        }
+
+        freq[digit] = 1;
+        num = num / 10;
+    }
+
+    return true;
+}
+Complexity (for checking one number)
+Time: O(d) → d = number of digits ≈ log n
+Space:
+Array → O(1)
+Set → O(d)
+Bitmask → O(1)
+
+Good catch — this is an important detail 👍
+
+---
+
+## 🧠 Why `(int)` is used here?
+
+```java
+int limit = (int)Math.pow(10, n);
+```
+
+### 👉 Because:
+
+* `Math.pow()` **always returns a `double`**
+* But we need an **integer limit** for looping
+
+---
+
+## 🔍 Without casting
+
+```java
+double limit = Math.pow(10, n);
+```
+
+Now `limit` is `double` like:
+
+```text
+100.0, 1000.0, 100000.0
+```
+
+But in loop:
+
+```java
+for(int i = 0; i < limit; i++)  // ❌ comparing int with double
+```
+
+👉 Not ideal / may cause confusion
+
+---
+
+## ✅ With casting
+
+```java
+int limit = (int)Math.pow(10, n);
+```
+
+Now:
+
+```text
+limit = 100   // proper integer
+```
+
+👉 Perfect for looping
+
+---
+
+## ⚠️ Important Note (VERY IMPORTANT 🔥)
+
+`Math.pow()` returns **double → can have precision issues**
+
+Example:
+
+```java
+System.out.println(Math.pow(10, 8));
+```
+
+Sometimes internally:
+
+```text
+99999999.999999 ❗
+```
+
+After casting:
+
+```java
+(int)99999999.999 → 99999999 ❌ wrong
+```
+
+---
+
+## ✅ Safer Alternative (recommended)
+
+```java
+int limit = 1;
+for(int i = 0; i < n; i++){
+    limit *= 10;
+}
+```
+
+👉 No floating point → no precision issue ✅
+
+---
+
+## 💡 Interview Tip
+
+If interviewer asks:
+
+👉 “Why not use Math.pow?”
+
+Say:
+
+> “Math.pow returns double which may cause precision issues, so I prefer integer multiplication.”
+
+---
+
+## 🔥 Final takeaway
+
+* `(int)` is used to convert **double → int**
+* But better to **avoid Math.pow for integers**
+
+---
+
+If you want, I can show:
+
+* Real example where `Math.pow` fails
+* Or optimize your brute force fully 👍
 
 
