@@ -438,5 +438,7 @@ class Solution {
       return true;
    }
 }
+approach 2: hashSet
+approach 3: Bitmask
 
 
