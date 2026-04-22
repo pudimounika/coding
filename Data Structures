@@ -441,4 +441,176 @@ class Solution {
 approach 2: hashSet
 approach 3: Bitmask
 We iterate over all numbers from 0 to 10ⁿ, and for each number we check its digits which takes O(n), so total complexity is O(10ⁿ × n).
+Great — let’s **convert brute force → optimal step-by-step**. This is exactly how you should explain in an interview 🔥
+
+---
+
+# 🧠 Step 0: Start with brute force (your current thinking)
+
+```text
+for every number from 0 to 10ⁿ:
+    check if digits are unique
+```
+
+👉 Complexity:
+
+```text
+O(10ⁿ × n) ❌ too slow
+```
+
+---
+
+# 🧠 Step 1: Ask the key question
+
+👉 “Why am I checking every number?”
+
+Instead think:
+👉 “Can I directly COUNT valid numbers instead of checking?”
+
+---
+
+# 🧠 Step 2: Build numbers instead of checking
+
+Instead of:
+
+```text
+check: 11 ❌, 22 ❌, 33 ❌
+```
+
+Think:
+👉 “How many valid 2-digit numbers can I form?”
+
+---
+
+# 🧠 Step 3: Break problem by digit length
+
+We calculate:
+
+```text
+1-digit numbers
+2-digit numbers
+3-digit numbers
+...
+n-digit numbers
+```
+
+Then add all.
+
+---
+
+# 🧠 Step 4: Count for each length
+
+---
+
+## ✅ 1-digit numbers
+
+```text
+0–9 → 10 numbers
+```
+
+---
+
+## ✅ 2-digit numbers
+
+Think like forming a number:
+
+* First digit → 1–9 → **9 choices**
+* Second digit → 0–9 except first → **9 choices**
+
+```text
+9 × 9 = 81
+```
+
+---
+
+## ✅ 3-digit numbers
+
+* First → 9 choices
+* Second → 9 choices
+* Third → 8 choices
+
+```text
+9 × 9 × 8 = 648
+```
+
+---
+
+# 🧠 Step 5: General pattern
+
+For k-digit numbers:
+
+```text
+count = 9 × 9 × 8 × 7 × ...
+```
+
+Each step:
+👉 available digits decrease
+
+---
+
+# 🧠 Step 6: Add all results
+
+```text
+n = 2 → 10 + 81 = 91  
+n = 3 → 10 + 81 + 648 = 739
+```
+
+---
+
+# 🧠 Step 7: Convert to code
+
+```java
+class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        if (n == 0) return 1;
+
+        int total = 10;   // for 1-digit
+        int unique = 9;   // first digit
+        int available = 9;
+
+        for (int i = 2; i <= n; i++) {
+            unique = unique * available;
+            total += unique;
+            available--;
+        }
+
+        return total;
+    }
+}
+```
+
+---
+
+# 🔥 What just happened (IMPORTANT)
+
+| Step      | Thinking shift           |
+| --------- | ------------------------ |
+| Brute     | Check every number       |
+| Optimized | Count valid combinations |
+
+---
+
+# ⏱ Complexity comparison
+
+| Approach    | Time         |
+| ----------- | ------------ |
+| Brute force | O(10ⁿ × n) ❌ |
+| Optimized   | O(n) ✅       |
+
+---
+# 💡 Interview explanation (gold line)
+👉 “Instead of iterating all numbers, I count valid numbers using permutations. For each digit, I reduce available choices to ensure uniqueness.”
+
+---
+# 🚀 Final intuition
+Imagine:
+* You have digits 0–9
+* You are picking digits one by one
+* Once used → cannot reuse
+
+👉 That’s it. That’s the whole problem.
+---
+If you want next:
+* I can give **similar problems using same pattern (very important)**
+* Or test you with a small variation to check your understanding 👍
 
