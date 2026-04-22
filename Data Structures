@@ -321,11 +321,8 @@ Space:
 Array → O(1)
 Set → O(d)
 Bitmask → O(1)
-
 Good catch — this is an important detail 👍
-
----
-
+--
 ## 🧠 Why `(int)` is used here?
 
 ```java
@@ -366,17 +363,13 @@ for(int i = 0; i < limit; i++)  // ❌ comparing int with double
 ```java
 int limit = (int)Math.pow(10, n);
 ```
-
 Now:
-
 ```text
 limit = 100   // proper integer
 ```
-
 👉 Perfect for looping
 
 ---
-
 ## ⚠️ Important Note (VERY IMPORTANT 🔥)
 
 `Math.pow()` returns **double → can have precision issues**
@@ -386,21 +379,17 @@ Example:
 ```java
 System.out.println(Math.pow(10, 8));
 ```
-
 Sometimes internally:
 
 ```text
 99999999.999999 ❗
 ```
-
 After casting:
 
 ```java
 (int)99999999.999 → 99999999 ❌ wrong
 ```
-
 ---
-
 ## ✅ Safer Alternative (recommended)
 
 ```java
@@ -409,33 +398,45 @@ for(int i = 0; i < n; i++){
     limit *= 10;
 }
 ```
-
 👉 No floating point → no precision issue ✅
-
 ---
-
 ## 💡 Interview Tip
-
 If interviewer asks:
-
 👉 “Why not use Math.pow?”
-
 Say:
-
 > “Math.pow returns double which may cause precision issues, so I prefer integer multiplication.”
-
 ---
-
 ## 🔥 Final takeaway
-
 * `(int)` is used to convert **double → int**
 * But better to **avoid Math.pow for integers**
-
 ---
-
 If you want, I can show:
 
 * Real example where `Math.pow` fails
 * Or optimize your brute force fully 👍
+class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        int limit = (int)Math.pow(10,n);
+        int count = 0;
+        for(int i=0;i<limit;i++){
+            if(unique(i)){
+             count++;
+            }
+        }
+        return count;
+    }
+   public boolean unique(int num){
+      int[] freq = new int[10];
+      while(num != 0) {
+      int d = num%10;
+      if(freq[d] == 1){
+        return false;
+      }
+      freq[d] = 1;
+      num = num/10;
+      }
+      return true;
+   }
+}
 
 
