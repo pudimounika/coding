@@ -241,3 +241,50 @@ class Solution {
 Time Complexity : O(n * log10(maxnumber)
 O(n*log(a)) 
 Space complexity - O(1)
+
+357. Count Numbers with Unique Digits
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+Given an integer n, return the count of all numbers with unique digits, x, where 0 <= x < 10n. 
+Example 1:
+Input: n = 2
+Output: 91
+Explanation: The answer should be the total numbers in the range of 0 ≤ x < 100, excluding 11,22,33,44,55,66,77,88,99
+Example 2:
+
+Input: n = 0
+Output: 1
+ 
+Constraints:
+0 <= n <= 8
+
+Brute force approach: 
+1) Step 1: Understand what NOT to do
+
+Your first instinct might be:
+
+“Loop from 0 to 10ⁿ and check each number”
+
+❌ That’s brute force
+
+For n = 8 → up to 100 million numbers
+Too slow and not expected in interviews
+
+👉 So we must avoid generating numbers
+
+2) Problem in brute force
+
+For each number x, you need to check:
+👉 “Are all digits unique?”
+
+✅ Approach 1: Using Array (Best for understanding)
+💡 Idea
+Extract digits
+Mark them in an array
+If digit repeats → not unique
+
+
+
