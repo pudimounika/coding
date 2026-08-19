@@ -720,6 +720,44 @@ public class Solution {
 }
 Time complexity: O(logn)
 space complexity: O(1)
+Pattern 7:
+import java.util.Scanner;
+
+public class Solution {
+       public static  int length(int n){
+          int count = 0;
+           while(n>0){
+             count = count + 1;
+             n = n/10;
+           }
+           return count;
+       }
+       
+       public static boolean ArmstrongNumber(int n){
+         int len = length(n);
+         int sum = 0;
+         int d;
+         int new_n = n;
+         while(n>0){
+            d = n%10;
+            sum = sum + (int)Math.pow(d,len);
+            n = n/10;
+         }
+         if(sum == new_n){
+            return true;
+         }
+         return false;
+       }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = ArmstrongNumber(n);
+        System.out.println(result);
+        }
+}
+
+  
+
   
 
 
