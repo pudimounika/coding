@@ -803,6 +803,7 @@ public class Solution {
         System.out.println(result);
         }
 }
+Time Complexity: O(sqrt(n))
 
   
 
