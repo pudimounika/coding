@@ -633,6 +633,42 @@ public class Solution {
         System.out.println(result);
         }
 }
+Pattern 10: 
+import java.util.Scanner;
+
+public class Solution {
+       public static int factorial(int n){
+        int fact = 1;
+        for(int i=1;i<=n;i++){
+            fact = fact * i;
+        }
+        return fact;
+       }
+       public static boolean StrongNumber(int n){
+         int new_n = n;
+         int fact;
+         int d;
+         int sum = 0;
+         while(n>0) {
+            d = n%10;
+            fact = factorial(d);
+            sum = sum + fact;
+            n = n/10;
+         }
+         if(sum == new_n) {
+          return true;
+         }
+         return false;
+       }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = StrongNumber(n);
+        System.out.println(result);
+        }
+}
+  
+
   
 
 
