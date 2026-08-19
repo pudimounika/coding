@@ -782,7 +782,30 @@ public class Solution {
 }
 time Complexity : O(logn)
 Space: O(1)
+Pattern 3:
+import java.util.Scanner;
+
+public class Solution {
+       public static boolean PrimeNumber(int num){
+          if(num < 2) return false;
+          if(num == 2) return true;
+          for(int i=2;i*i<=num;i++){
+            if(num % i == 0){
+                return false;
+            }
+          }
+          return true;
+       }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = PrimeNumber(n);
+        System.out.println(result);
+        }
+}
+
   
+
 
 
   
