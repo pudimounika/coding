@@ -695,6 +695,33 @@ public class Solution {
         }
 }
 Tc: o(sqrt(n)) space O(1)
+Pattern 8:
+import java.util.Scanner;
+
+public class Solution {
+       public static boolean Palindrome(int n){
+         int rev = 0;
+         int new_n = n;
+         while(n>0){
+            rev = rev*10 + n%10;
+            n = n/10;
+         }
+         if(new_n == rev){
+            return true;
+         }
+         return false;
+       }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = Palindrome(n);
+        System.out.println(result);
+        }
+}
+Time complexity: O(logn)
+space complexity: O(1)
+  
+
 
   
 
