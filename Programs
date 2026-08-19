@@ -610,7 +610,31 @@ public class Solution {
         System.out.println(result);
         }
 }
+import java.util.Scanner;
+
+public class Solution {
+       public static boolean IsAutomorphic(int n){
+        int result = n*n;
+        int new_n = n;
+        int count = 1;
+        while(n>0){
+            n = n/10;
+            count = count*10;
+        }
+            if((result%count == (new_n))){
+                return true;
+            }
+            return false;
+       }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = IsAutomorphic(n);
+        System.out.println(result);
+        }
+}
   
+
 
 
 
