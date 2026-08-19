@@ -805,7 +805,29 @@ public class Solution {
 }
 Time Complexity: O(sqrt(n))
 
-  
+import java.util.Scanner;
+
+public class Solution {
+    public static int lcm(int a, int b){
+        int lcm_num=0;
+        for(int i=Math.max(a,b);i<=a*b;i++){
+            if((i%a == 0) && (i%b == 0)){
+                lcm_num = i;
+                break;
+            }
+        }
+        return lcm_num;
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int result = lcm(a,b);
+        System.out.println(result);
+    }
+}
+Time complexity: O(a*b)
+space complexity: o(1)
 
 
 
