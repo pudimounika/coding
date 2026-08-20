@@ -836,7 +836,7 @@ class Solution {
        int digit;
        while(x != 0){
          digit = x % 10;
-          if(reverse > 214748364  || reverse ==  214748364 && digit > 8 ) {
+          if(reverse > 214748364  || reverse ==  214748364 && digit > 7 ) {
              return 0;
           }
           if(reverse <  -214748364 || reverse ==  -214748364 && digit < -8 ) {
